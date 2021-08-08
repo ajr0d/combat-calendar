@@ -1,4 +1,5 @@
 # v0.01 combat calendar, by adam roddick
+import requests, bs4
 
 # introduction to combat calendar
 print("Welcome to Combat Calendar. Your one stop hub for seeing all your favorite upcoming events in your favorite combat sports!")
@@ -33,3 +34,9 @@ while True:
         break
     else:
         print("Please type either 'this' or 'last' please! To exit, type 'exit'")
+        
+# below is a test of web scraping, just ignore
+res = requests.get('https://en.wikipedia.org/wiki/2021_in_Bellator_MMA')
+soup = bs4.BeautifulSoup(res.text, 'html.parser')
+spanTable = soup.select('#Scheduled_events > tbody > tr > td > a')
+print(str(spanTable))
